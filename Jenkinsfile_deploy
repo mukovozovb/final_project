@@ -8,7 +8,7 @@ pipeline {
         stage('Deploy artifact') {
             steps {
                 node('#artifactory'){
-                   sh 'cp /home/ubuntu/workspace/build/spring_petclinic/target/*.jar .'
+                   sh 'cp /home/ubuntu/jenkins/workspace/build/spring_petclinic/target/*.jar .'
                    stash name: "artifact", includes: "*.jar"
                 }
             }
