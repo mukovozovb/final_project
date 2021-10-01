@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label 'node_main'
+            label '#node'
         }
     }
     stages {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage ('Delivery artifactory') {
                  steps {
-                    node('node_artifactory'){
+                    node('#artifactory'){
                         unstash name: "artifact" 
                     }
                  }

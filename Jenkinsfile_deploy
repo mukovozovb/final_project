@@ -1,21 +1,21 @@
 pipeline {
     agent {
         node {
-            label 'node_main'
+            label '#node'
         }
     }
     stages {
         stage('Deploy artifact') {
             steps {
-                node('node_artifactory'){
-                   sh 'cp /home/ubuntu/workspace/Project_build/spring_petclinic/target/*.jar .'
+                node('#artifactory'){
+                   sh 'cp /home/ubuntu/workspace/build/spring_petclinic/target/*.jar .'
                    stash name: "artifact", includes: "*.jar"
                 }
             }
         }
         stage('Start application') {
             steps {
-                node('node_prod'){
+                node('#Production'){
                     sh 'sudo systemctl stop spring-petclinic'
                     unstash name: "artifact"
                     sh 'sudo systemctl start spring-petclinic'
