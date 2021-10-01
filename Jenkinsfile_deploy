@@ -16,7 +16,6 @@ pipeline {
         stage('Start application') {
             steps {
                 node('#Production'){
-                    sh 'sudo systemctl stop spring-petclinic'
                     unstash name: "artifact"
                     sh 'sudo systemctl start spring-petclinic'
                 }
