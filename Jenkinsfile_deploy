@@ -16,9 +16,9 @@ pipeline {
         stage('Start application') {
             steps {
                 node('#Production'){
-                    sh 'sudo systemctl stop spring-petclinic'
+                    sh 'sudo systemctl stop petclinic.service'
                     unstash name: "artifact"
-                    sh 'sudo systemctl start spring-petclinic'
+                    sh 'sudo systemctl start petclinic.service'
                 }
             }
         }
